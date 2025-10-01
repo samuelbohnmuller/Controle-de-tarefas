@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Tarefas</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Controle de Tarefas</h1>
+        
+        <!-- Formulário de Cadastro/Edição -->
+        <div class="form-section" id="formSection">
+            <h2 id="formTitle">Nova Tarefa</h2>
+            <form id="tarefaForm">
+                <input type="hidden" id="tarefaId" value="">
+                
+                <div class="form-group">
+                    <label for="titulo">Título:</label>
+                    <input type="text" id="titulo" name="titulo" required maxlength="100">
+                    <span class="error" id="tituloError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" rows="3" maxlength="500"></textarea>
+                    <span class="error" id="descricaoError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dataVencimento">Data de Vencimento:</label>
+                    <input type="datetime-local" id="dataVencimento" name="dataVencimento" required>
+                    <span class="error" id="dataVencimentoError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="situacao">Situação:</label>
+                    <select id="situacao" name="situacao" required>
+                        <option value="1">Pendente</option>
+                        <option value="3">Andamento</option>
+                        <option value="2">Encerrada</option>
+                    </select>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="submit" id="submitBtn">Cadastrar</button>
+                    <button type="button" id="cancelBtn" onclick="cancelarEdicao()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Filtros -->
+        <div class="filters-section">
+            <h2>Filtros</h2>
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="filtroDataInicial">Data Inicial:</label>
+                    <input type="date" id="filtroDataInicial">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="filtroDataFinal">Data Final:</label>
+                    <input type="date" id="filtroDataFinal">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="filtroSituacao">Situação:</label>
+                    <select id="filtroSituacao">
+                        <option value="">Todas</option>
+                        <option value="1">Pendente</option>
+                        <option value="3">Andamento</option>
+                        <option value="2">Encerrada</option>
+                        <option value="4">Cancelada</option>
+                    </select>
+                </div>
+                
+                <button type="button" onclick="pesquisarTarefas()">Pesquisar</button>
+            </div>
+        </div>
+        
+        <!-- Lista de Tarefas -->
+        <div class="list-section">
+            <h2>Lista de Tarefas</h2>
+            <div class="table-container">
+                <table id="tarefasTable">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Título</th>
+                            <th>Data de Criação</th>
+                            <th>Data de Vencimento</th>
+                            <th>Situação</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tarefasTableBody">
+                        <!-- As tarefas serão inseridas aqui via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Confirmação -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirmar Cancelamento</h3>
+            <p>Tem certeza que deseja cancelar esta tarefa?</p>
+            <div class="modal-buttons">
+                <button onclick="confirmarCancelamento()">Sim</button>
+                <button onclick="fecharModal()">Não</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
